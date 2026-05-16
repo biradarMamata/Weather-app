@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Mood</title>
+    <!-- Link the CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Weather Mood</h1>
+        <p class="subtitle">Enter your city to see the temperature and a custom message!</p>
+
+        <div class="input-group">
+            <input type="text" id="cityInput" placeholder="e.g., London, Tokyo...">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <!-- Feedback states -->
+        <div class="loading" id="loadingState">Checking the weather...</div>
+        <div class="error-message" id="errorState">Oops! Couldn't find that city. Please try again.</div>
+
+        <!-- The actual data display (Hidden initially) -->
+        <div class="weather-result" id="weatherDisplay">
+            <div class="city-name" id="displayCity">Result for: --</div>
+            <div class="weather-icon" id="displayIcon">🌤️</div>
+            <div class="temperature" id="displayTemp">--°C</div>
+            <div class="custom-message" id="displayMessage">
+                Waiting for weather data...
+            </div>
+
+            <div class="weather-details">
+                <div class="detail-item">
+                    <span class="detail-label">Feels Like</span>
+                    <span class="detail-value" id="displayFeelsLike">--°C</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Humidity</span>
+                    <span class="detail-value" id="displayHumidity">--%</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Wind</span>
+                    <span class="detail-value" id="displayWind">-- km/h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transition: background 0.8s ease-in-out;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Default background */
+    padding: 20px;
+}
+
+/* Dynamic Backgrounds */
+body.bg-default { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+body.bg-sunny { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+body.bg-cloudy { background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); }
+body.bg-rainy { background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%); }
+body.bg-cold { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+body.bg-snow { background: linear-gradient(135deg, #E2E2E2 0%, #C9D6FF 100%); color: #333; }
+body.bg-hot { background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%); }
+
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    font-size: 1rem;
+    color: #fff;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Adjust colors when bg is snow (dark text mode) */
+body.bg-snow input {
+    color: #333;
+    background: rgba(255, 255, 255, 0.5);
+}
+body.bg-snow input::placeholder { color: rgba(0, 0, 0, 0.5); }
+body.bg-snow .subtitle { color: #555; }
+body.bg-snow .detail-item { background: rgba(255,255,255,0.6); }
+
+button {
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.25);
+    color: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.loading {
+    display: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.weather-result {
+    display: none;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.weather-icon {
+    font-size: 5.5rem;
+    line-height: 1.2;
+    margin: 0.5rem 0;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+}
+
+.temperature {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: -2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.city-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.custom-message {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+.weather-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.detail-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px 8px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.error-message {
+    display: none;
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    animation: shake 0.5s;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .temperature {
+        font-size: 3.5rem;
+    }
+    
+    .weather-icon {
+        font-size: 4.5rem;
+    }
+    
+    .weather-details {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .detail-item {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px 20px;
+    }
+    
+    .detail-label {
+        margin-bottom: 0;
+    }
+}
